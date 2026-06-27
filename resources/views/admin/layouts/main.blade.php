@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>CircleScent</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/web.webp') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
+    <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
+    <meta name="author" content="CodedThemes">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ asset('fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/material.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" id="main-style-link">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .sidebar-hidden .pc-sidebar {
+            transform: translateX(-100%);
+            visibility: hidden;
+            position: absolute;
+        }
+        .sidebar-hidden main {
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+        .sidebar-hidden .pc-header {
+            left: 0 !important;
+            width: 100% !important;
+        }
+        .pc-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 280px;
+            background-color: #fff;
+            transform: translateX(0);
+            visibility: visible;
+            z-index: 1000;
+        }
+        .main-content{
+            margin-left: 280px;
+            padding: 24px;
+            padding-top: 24px;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(212,175,55,.08),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(212,175,55,.04),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    #0f0f0f 0%,
+                    #161616 100%
+                );
+
+            transition: 0.3s ease;
+            position: relative;
+        }
+        .custom-header{
+            left: 280px;
+            width: calc(100% - 280px);
+            transition: 0.3s ease;
+        }
+        .sidebar-hidden .main-content{
+            margin-left: 0;
+        }
+        .sidebar-hidden .custom-header{
+            left: 0;
+            width: 100%;
+        }
+        @media (max-width: 991px){
+            .main-content{
+                margin-left: 0;
+                padding: 16px;
+            }
+            .custom-header{
+                left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const sidebarHide = document.getElementById("sidebar-hide");
+        const mobileCollapse = document.getElementById("mobile-collapse");
+
+        function toggleSidebar() {
+            document.body.classList.toggle("sidebar-hidden");
+        }
+
+        sidebarHide?.addEventListener("click", function (e) {
+            e.preventDefault();
+            toggleSidebar();
+        });
+
+        mobileCollapse?.addEventListener("click", function (e) {
+            e.preventDefault();
+            toggleSidebar();
+        });
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<body>
+    @include('admin.layouts.header')
+    @include('admin.layouts.sidebar')
+    <main class="main-content">
+        @yield('content')
+    </main>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/pcoded.js') }}"></script>
+    <script>
+        feather.replace();
+    </script>
+    @stack('scripts')
+</body>
+</html>
