@@ -43,14 +43,7 @@
                     <span class="pc-mtext">Stock Log</span>
                 </a>
             </li>
-
-            <li class="pc-item">
-                <a href="/dashboard-mutasi" class="pc-link">
-                    <span class="pc-micon"><i class="bi bi-arrow-left-right"></i></span>
-                    <span class="pc-mtext">Stock Transfer</span>
-                </a>
-            </li>
-
+            
             <li class="pc-item pc-caption">
                 <label>Sales</label>
             </li>

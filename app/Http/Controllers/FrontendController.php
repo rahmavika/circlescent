@@ -34,7 +34,8 @@ class FrontendController extends Controller
 
         $produks = $produks
             ->latest()
-            ->get();
+            ->paginate(25)
+            ->withQueryString();
 
         return view('landingpage.page.semuaproduk', [
             'produks' => $produks,

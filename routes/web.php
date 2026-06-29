@@ -51,7 +51,6 @@ Route::resource('admin/login', AdminLoginController::class)
 Route::post('/admin/logout', [AdminLoginController::class, 'destroy'])
     ->name('admin.logout');
 Route::get('/semuaproduk', [FrontendController::class, 'index'])->name('semuaproduk');
-Route::get('/semuaproduk', [FrontendController::class, 'semuaproduk'])->name('semuaproduk');
 Route::get('/semuaproduk/search', [FrontendController::class, 'search'])->name('frontend.search');
 Route::get('/produk/{id}', [FrontendController::class, 'detail'])
     ->name('produk.detail');
@@ -110,9 +109,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/stok/tambah/{varian}', [VarianController::class, 'tambah'])->name('stok.tambah');
     Route::post('/stok/kurangi/{varian}', [VarianController::class, 'kurangi'])->name('stok.kurangi');
     Route::get('/dashboard-log', [LogstokController::class, 'index'])->name('logstoks.index');
-    Route::get('/dashboard-mutasi', [MutasistokController::class, 'index'])->name('mutasistoks.index');
-    Route::get('/dashboard-mutasi/cetak', [MutasistokController::class, 'cetak'])->name('mutasistoks.cetak');
-    Route::get('/dashboard-mutasi/{bulan}/{tahun}', [MutasistokController::class, 'show'])->name('mutasistoks.show');
     Route::get('/dashboard-pesanan', [CheckoutController::class, 'showPesanan'])->name('checkouts.pesanan');
     Route::get('/dashboard-pesanan/{id}', [CheckoutController::class, 'show'])->name('checkouts.show');
     Route::post('/dashboard-pesanan/{id}/confirm', [CheckoutController::class, 'confirm'])->name('checkouts.confirm');

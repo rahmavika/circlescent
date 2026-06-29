@@ -465,6 +465,102 @@
         font-weight:500;
         line-height:1.2;
     }
+/* ==========================
+   PAGINATION LUXURY
+========================== */
+
+nav[role="navigation"]{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:45px;
+}
+
+/* Showing x to y */
+nav[role="navigation"] .small{
+    color:#c8c8c8 !important;
+    font-size:13px;
+    font-weight:400;
+    margin:0;
+}
+
+/* pagination */
+.pagination{
+    gap:6px;
+    margin:0;
+}
+
+.pagination .page-item .page-link{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#181818;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+
+    color:#f5f5f5;
+    font-size:15px;
+    font-weight:500;
+
+    transition:.25s ease;
+}
+
+.pagination .page-item .page-link:hover{
+    background:#ffffff;
+    color:#111;
+    border-color:#ffffff;
+}
+
+.pagination .page-item.active .page-link{
+    background:#ffffff;
+    color:#111;
+    border-color:#ffffff;
+    font-weight:600;
+}
+
+.pagination .page-item.disabled .page-link{
+    background:#111;
+    color:#666;
+    border-color:rgba(255,255,255,.05);
+}
+
+/* icon previous next */
+.pagination svg{
+    width:14px;
+    height:14px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    nav[role="navigation"]{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    nav[role="navigation"] .small{
+        order:2;
+    }
+
+    .pagination{
+        order:1;
+    }
+
+    .pagination .page-link{
+        width:38px;
+        height:38px;
+        font-size:14px;
+    }
+}
+
+
 </style>
 
 <div class="page-wrapper">
@@ -564,24 +660,11 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center mt-5">
+            {{ $produks->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('liveSearchForm');
-        const input = document.getElementById('liveSearchInput');
-
-        let timeout = null;
-
-        input.addEventListener('input', function () {
-            clearTimeout(timeout);
-
-            timeout = setTimeout(() => {
-                form.submit();
-            }, 500); // delay 500ms setelah user berhenti mengetik
-        });
-    });
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
