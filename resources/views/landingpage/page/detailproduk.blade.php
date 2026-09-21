@@ -490,7 +490,19 @@
     font-weight:700;
     font-size:16px;
 }
+@media (max-width: 768px){
 
+.action-wrapper{
+    width:100%;
+}
+
+.btn-cart{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+}
+
+}
 </style>
 
 <div class="detail-wrapper">

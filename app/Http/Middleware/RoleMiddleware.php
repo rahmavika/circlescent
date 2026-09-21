@@ -19,19 +19,25 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        // Pastikan pengguna sudah login
+        // Jika belum login
         if (!Auth::check()) {
-            return redirect('login'); // Redirect ke login jika belum login
+
+            // Jika mengakses halaman admin
+            if ($request->is('admin') || $request->is('admin/*')) {
+                return redirect('/admin/login');
+            }
+
+            // Selain admin
+            return redirect('/login');
         }
 
-        $user = Auth::user(); // Ambil user yang sedang login
+        $user = Auth::user();
 
-        // Periksa apakah role user ada dalam daftar role yang diperbolehkan
+        // Cek role
         if (in_array($user->role, $roles)) {
             return $next($request);
         }
 
-        // Tampilkan halaman 404 jika role tidak cocok
         abort(404, 'Halaman tidak ditemukan');
     }
 }

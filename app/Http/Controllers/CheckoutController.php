@@ -283,6 +283,10 @@ Terima kasih.";
                 'nama'      => optional($item->produk)->nama_produk,
                 'gambar'    => $gambar,
 
+                // ambil dari tabel varians
+                'ukuran' => optional($item->varian)->ukuran,
+                'level'  => optional($item->varian)->level,
+
                 'jumlah'    => $item->jumlah,
                 'harga'     => $item->harga,
                 'total'     => $item->jumlah * $item->harga,

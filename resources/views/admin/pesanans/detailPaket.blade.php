@@ -214,7 +214,6 @@
     <div class="section-title">
         Isi Paket
     </div>
-
     <div class="section-body">
 
         @php
@@ -225,51 +224,54 @@
         <table class="produk-table">
             <thead>
                 <tr>
-                    <th>Produk</th>
-                    <th width="60">Qty</th>
-                    <th width="110">Harga</th>
+                    <th width="65%">Produk</th>
+                    <th width="10%">Qty</th>
+                    <th width="25%">Harga</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach($produkDetails as $produk)
 
-                @php
-                    $total = $produk['jumlah'] * $produk['harga'];
-                    $subtotal += $total;
+                    @php
+                        $total = $produk['jumlah'] * $produk['harga'];
+                        $subtotal += $total;
 
-                    $varian = $produk['varian'] ?? null;
-                @endphp
+                        $ukuran = $produk['ukuran'] ?? null;
+                        $level = $produk['level'] ?? null;
+                    @endphp
 
-                <tr>
-                    <td>
-                        <div>
-                            {{ $produk['nama'] }}
+                    <tr>
+                        <td>
+                            <strong>{{ $produk['nama'] }}</strong>
 
-                            {{-- VARIAN --}}
-                            @if($varian)
-                                <div style="font-size:12px;color:#6b7280;margin-top:2px;">
-                                    @if(!empty($varian['ukuran']))
-                                        Ukuran: {{ $varian['ukuran'] }}
+                            @if($ukuran || $level)
+                                <div style="font-size:10px;color:#777;margin-top:2px;">
+
+                                    @if($ukuran)
+                                        Ukuran: {{ $ukuran }}
                                     @endif
 
-                                    @if(!empty($varian['level']))
-                                        @if(!empty($varian['ukuran'])) • @endif
-                                        Level: {{ $varian['level'] }}
+                                    @if($ukuran && $level)
+                                        |
                                     @endif
+
+                                    @if($level)
+                                        Level: {{ $level }}
+                                    @endif
+
                                 </div>
                             @endif
-                        </div>
-                    </td>
+                        </td>
 
-                    <td class="text-center">
-                        {{ $produk['jumlah'] }}
-                    </td>
+                        <td class="text-center">
+                            {{ $produk['jumlah'] }}
+                        </td>
 
-                    <td class="text-end">
-                        Rp {{ number_format($total,0,',','.') }}
-                    </td>
-                </tr>
+                        <td class="text-end">
+                            Rp {{ number_format($total, 0, ',', '.') }}
+                        </td>
+                    </tr>
 
                 @endforeach
             </tbody>
